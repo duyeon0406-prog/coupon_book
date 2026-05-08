@@ -9,7 +9,7 @@
         body {
             font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
             background-color: #fff0f5;
-            /* 사랑스러운 연핑크 배경 */
+           
             margin: 0;
             padding: 20px;
             display: flex;
@@ -32,7 +32,6 @@
             gap: 15px;
         }
 
-        /* 쿠폰 카드 기본 디자인 */
         .coupon {
             background: white;
             border-radius: 15px;
@@ -64,7 +63,6 @@
             line-height: 1.4;
         }
 
-        /* 사용하기 버튼 디자인 */
         .use-btn {
             background-color: #ff6b81;
             color: white;
@@ -80,8 +78,7 @@
         .use-btn:active {
             background-color: #ff4757;
         }
-
-        /* 사용 완료된 쿠폰 스타일 (회색 처리) */
+        
         .coupon.used {
             background: #e0e0e0;
             box-shadow: none;
@@ -97,7 +94,6 @@
             cursor: not-allowed;
         }
 
-        /* 사용 완료 도장 효과 (가운데 크게 찍히는 연출) */
         .coupon.used::after {
             content: '사용 완료';
             position: absolute;
@@ -111,7 +107,6 @@
             padding: 5px 15px;
             border-radius: 10px;
             pointer-events: none;
-            /* 도장이 클릭을 방해하지 않도록 설정 */
         }
     </style>
 </head>
