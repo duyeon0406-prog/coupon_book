@@ -133,6 +133,8 @@
     ];
     const couponListContainer = document.getElementById('couponList');
 
+    let usedCoupons = JSON.parse(localStorage.getItem('usedCoupons')) || [];
+    
     function renderCoupons(){
         coupons.forEach(coupon => {
             const card = document.createElement('div');
