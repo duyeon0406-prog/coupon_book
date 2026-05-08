@@ -136,6 +136,11 @@
             card.className = 'coupon';
             card.id = `coupon-${coupon.id}`;
 
+            const isUsed = usedCoupons.includes(coupon.id);
+            if(isUsed) {
+                card.classList.add('used');
+            }
+
             card.innerHTML = `
             <div class = "coupon-info">
                 <div class = "coupon-title">${coupon.title}</div>
@@ -159,7 +164,10 @@
             btnElement.disabled = true;
             btnElement.innerText = "사용됨";
 
-            alert("쿠폰이 사용 됐어!");
+            usedCoupons.push(id);
+            localStorage.setItem('ussdCoupons', JSON.stringfy(usedCoupons));
+
+            alert("쿠폰이 사용 됐어! 지금 바로 들어줄게!");
         }
     }
 
