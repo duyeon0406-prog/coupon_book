@@ -131,6 +131,8 @@
     let usedCoupons = JSON.parse(localStorage.getItem('usedCoupons')) || [];
     
     function renderCoupons(){
+        couponListContainer.innerHHTML = "";
+
         coupons.forEach(coupon => {
             const card = document.createElement('div');
             card.className = 'coupon';
@@ -146,7 +148,9 @@
                 <div class = "coupon-title">${coupon.title}</div>
                 <div class = "coupon-desc">${coupon.desc}</div>
             </div>
-            <button class = "use-btn" onclick = "useCoupon(${coupon.id}, this)">사용</button>
+            <button class = "use-btn" onclick = "useCoupon(${coupon.id}, this)" ${isUsed ? 'disabled' : ''}>
+                ${isUsed ? '사용됨' : '사용'}
+                </button>
             `;
             couponListContainer.appendChild(card);    
         });
@@ -165,7 +169,7 @@
             btnElement.innerText = "사용됨";
 
             usedCoupons.push(id);
-            localStorage.setItem('ussdCoupons', JSON.stringify(usedCoupons));
+            localStorage.setItem('usedCoupons', JSON.stringify(usedCoupons));
 
             alert("쿠폰이 사용 됐어! 지금 바로 들어줄게!");
         }
