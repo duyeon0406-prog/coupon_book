@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오민정 전용 쿠폰북💖</title>
+    <style>
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+            background-color: #fff0f5;
+            /* 사랑스러운 연핑크 배경 */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ff6b81;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .coupon-list {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 쿠폰 카드 기본 디자인 */
+        .coupon {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .coupon-info {
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .coupon-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .coupon-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* 사용하기 버튼 디자인 */
+        .use-btn {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .use-btn:active {
+            background-color: #ff4757;
+        }
+
+        /* 사용 완료된 쿠폰 스타일 (회색 처리) */
+        .coupon.used {
+            background: #e0e0e0;
+            box-shadow: none;
+        }
+
+        .coupon.used .coupon-title,
+        .coupon.used .coupon-desc {
+            color: #999;
+        }
+
+        .coupon.used .use-btn {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* 사용 완료 도장 효과 (가운데 크게 찍히는 연출) */
+        .coupon.used::after {
+            content: '사용 완료';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: rgba(255, 71, 87, 0.6);
+            border: 4px solid rgba(255, 71, 87, 0.6);
+            padding: 5px 15px;
+            border-radius: 10px;
+            pointer-events: none;
+            /* 도장이 클릭을 방해하지 않도록 설정 */
+        }
+    </style>
+</head>
+
+<body>
+<h1>쿠폰북💖</h1>
+<div class = "coupon-list" id="couponList">
+</div>
+
+<script>
+    const coupons = [
+        { id: 1, title: "소원권", desc: "그 어떤 소원이라도 무조건 들어줄게!" },
+        { id: 2, title: "무조건 화풀기", desc: "싸웠을 때 이 쿠폰을 내밀면 무조건 이해하고 화풀기..!" },
+        { id: 3, title: "원하는 야식 쏘기", desc: "누나가 원하는 모든 음식을 즉시 대령!" },
+        { id: 4, title: "잔소리 방어권", desc: "어떤 잘못을 해도 부드럽게 넘어가 줄게!" },
+        { id: 5, title: "화풀이", desc: "그냥 기분 안 좋을 때 화풀이할 수 있어." },
+        { id: 6, title: "딱밤 프리패스", desc: "말싸움에서 밀리거나 그냥 얄미울 때, 아무 반항 없이 딱밤 맞아줄게."},
+        { id: 7, title: "자유이용권", desc: "하루동안 마음대로 날 이용할 수 있어. 절대 권력이야." },
+    ];
+    const couponListContainer = document.getElementById('couponList');
+
+    function renderCoupons(){
+        coupons.forEach(coupon => {
+            const card = document.createElement('div');
+            card.className = 'coupon';
+            card.id = `coupon-${coupon.id}`;
+
+            card.innerHTML = `
+            <div class = "coupon-info">
+                <div class = "coupon-title">${coupon.title}</div>
+                <div class = "coupon-desc">${coupon.desc}</div>
+            </div>
+            <button class = "use-btn" onclick = "useCoupon(${coupon.id}, this)">사용</button>
+            `;
+            couponListContainer.appendChild(card);    
+        });
+    }
+
+    function useCoupon(id, btnElement){
+        const isSure = confirm("이 쿠폰 정말 사용할거야? (취소는 없어)");
+
+        if(isSure){
+            const card = document.getElementById(`coupon-${id}`);
+            console.log("찾은 카드 요소 : ", card);
+
+            card.classList.add("used");
+
+            btnElement.disabled = true;
+            btnElement.innerText = "사용됨";
+
+            alert("쿠폰이 사용 됐어!");
+        }
+    }
+
+    renderCoupons();
+</script>
+</body>
+
+</html>
